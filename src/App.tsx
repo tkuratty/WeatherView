@@ -19,8 +19,8 @@ function App() {
         </div>
         <hr />
         <Switch>
-          <Route exact path="/" children={Home} />
-          <Route exact path="/cityview" children={CityViewer} />
+          <Route exact path="/" children={<Home />} />
+          <Route exact path="/cityview" children={<CityViewer />} />
           <Route render={() => <h2>Not Found</h2>} />
         </Switch>
       </BrowserRouter>
