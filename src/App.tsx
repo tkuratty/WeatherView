@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Button } from "react-bootstrap";
+import CityViewer from "./CityViewer/CityViewer";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         >
           Learn React
         </a>
-        <Button variant="primary">Primary</Button>
+        <CityViewer />
       </header>
     </div>
   );
