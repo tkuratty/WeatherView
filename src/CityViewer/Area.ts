@@ -34,7 +34,7 @@ export function GetAreaData(prefData: Array<Object>): Array<Pref> {
     );
     // 道南が重複している!! (RSS側の不具合っぽい) 重複をまとめるように処理追加
     const idx = area.findIndex((v) => v.name === prefName);
-    if (idx == -1) {
+    if (idx === -1) {
       area.push({
         name: prefName,
         cities: cities,

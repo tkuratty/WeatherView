@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { GetAreaData, Pref, City } from "./Area";
 import xml2js from "xml2js";
+import PrefList from "./PrefList";
 
 const CityViewer: React.FC = () => {
   const [area, setArea] = useState(new Array<Pref>());
@@ -28,6 +28,9 @@ const CityViewer: React.FC = () => {
   return (
     <div>
       <p>City information</p>
+      <div>
+        <PrefList area={area} />
+      </div>
       {area.map((pref: Pref) => {
         const cities = pref.cities.map((city: City) => {
           return city.name;
