@@ -15,6 +15,10 @@ export type Pref = {
   cities: Array<City>;
 };
 
+/**
+ * Convert xml area data to object
+ * @param prefData
+ */
 export function GetAreaData(prefData: Array<Object>): Array<Pref> {
   const area = new Array<Pref>();
   prefData.map((pref: any, index: number) => {
