@@ -36,9 +36,9 @@ const CityViewer: React.FC = () => {
     <>
       <p>City information</p>
       <div>
-        <Row>
+        <Row className="h-50">
           <Col>
-            <div className="h-50">
+            <div>
               <PrefList area={area} setPrefName={setPref} />
             </div>
           </Col>
