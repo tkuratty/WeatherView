@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GetAreaData, Pref, City } from "./Area";
 import { ListGroup, Dropdown, Form } from "react-bootstrap";
+import ListPrefView from "./ListPrefView";
 
 const PrefList: React.FC<{
   area: Array<Pref>;
   setPrefName: (prefName: string) => void;
 }> = (props) => {
   const [listSelected, setListSelected] = useState(true);
-
-  /**
-   * List item clicked
-   * @param event
-   */
-  const itemClicked = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    if (event.target instanceof HTMLButtonElement) {
-      const b: HTMLButtonElement = event.target;
-      if (!b.firstChild || !b.firstChild.nodeValue) return;
-      else props.setPrefName(b.firstChild.nodeValue);
-    }
-  };
 
   const itemClicked2 = (event: any) => {
     console.log(event.target);
@@ -41,20 +28,6 @@ const PrefList: React.FC<{
         setListSelected(false);
       }
     }
-  };
-
-  const ListPrefView: React.FC = () => {
-    return (
-      <ListGroup>
-        {props.area.map((pref: Pref) => {
-          return (
-            <ListGroup.Item action onClick={itemClicked} key={pref.name}>
-              {pref.name}
-            </ListGroup.Item>
-          );
-        })}
-      </ListGroup>
-    );
   };
 
   const DropPrefView: React.FC = () => {
@@ -98,7 +71,9 @@ const PrefList: React.FC<{
         />
       </Form>
       <div>
-        {listSelected && <ListPrefView />}
+        {listSelected && (
+          <ListPrefView setPrefName={props.setPrefName} area={props.area} />
+        )}
         {!listSelected && <DropPrefView />}
       </div>
     </div>
