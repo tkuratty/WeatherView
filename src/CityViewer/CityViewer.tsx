@@ -14,7 +14,7 @@ const CityViewer: React.FC = () => {
         const parser = new xml2js.Parser();
         parser.parseString(xml, (err: Error, result: any) => {
           if (err === null) {
-            console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
+            //console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
             setArea(
               GetAreaData(result.rss.channel[0]["ldWeather:source"][0].pref)
             );
@@ -29,7 +29,18 @@ const CityViewer: React.FC = () => {
     <div>
       <p>City information</p>
       {area.map((pref: Pref) => {
-        return <li key={pref.name}>{pref.name}</li>;
+        const cities = pref.cities.map((city: City) => {
+          return city.name;
+        });
+        return (
+          <li key={pref.name}>
+            {pref.name}(
+            {cities.map((name: string): string => {
+              return name + ",";
+            })}
+            )
+          </li>
+        );
       })}
     </div>
   );
