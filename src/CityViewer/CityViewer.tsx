@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { GetAreaData, Pref, City } from "./Area";
 import xml2js from "xml2js";
 import PrefList from "./PrefList";
+import { Row, Col } from "react-bootstrap";
 
 const CityViewer: React.FC = () => {
   const [area, setArea] = useState(new Array<Pref>());
-  const xmlUrl: string = "/forecast/rss/primary_area.xml";
+  const [selectedPref, setSelectedPref] = useState("");
+  const xmlUrl = "/forecast/rss/primary_area.xml";
+
   useEffect(() => {
     // didMount
     fetch(xmlUrl)
@@ -25,27 +28,27 @@ const CityViewer: React.FC = () => {
       });
   }, []);
 
+  const setPref = (prefName: string) => {
+    setSelectedPref(prefName);
+  };
+
   return (
-    <div>
+    <>
       <p>City information</p>
       <div>
-        <PrefList area={area} />
+        <Row>
+          <Col>
+            <div className="h-50">
+              <PrefList area={area} setPrefName={setPref} />
+            </div>
+          </Col>
+          <Col>
+            <p>City Info here</p>
+            <p>{selectedPref}</p>
+          </Col>
+        </Row>
       </div>
-      {area.map((pref: Pref) => {
-        const cities = pref.cities.map((city: City) => {
-          return city.name;
-        });
-        return (
-          <li key={pref.name}>
-            {pref.name}(
-            {cities.map((name: string): string => {
-              return name + ",";
-            })}
-            )
-          </li>
-        );
-      })}
-    </div>
+    </>
   );
 };
 
