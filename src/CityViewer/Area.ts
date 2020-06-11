@@ -28,7 +28,7 @@ export function GetAreaData(prefData: Array<Object>): Array<Pref> {
         return {
           name: city["$"].title,
           id: city["$"].id,
-          source: city["$"].aource,
+          source: city["$"].source,
         };
       }
     );
