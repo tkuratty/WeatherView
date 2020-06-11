@@ -17,7 +17,7 @@ const DropPrefView: React.FC<{
 
   return (
     <>
-      <Dropdown>
+      <Dropdown style={{ height: "inherit" }}>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           Pref
         </Dropdown.Toggle>

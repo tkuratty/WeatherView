@@ -3,6 +3,7 @@ import { GetAreaData, Pref, City } from "./Area";
 import xml2js from "xml2js";
 import PrefList from "./PrefList";
 import { Row, Col } from "react-bootstrap";
+import "./CityViewer.css";
 
 const CityViewer: React.FC = () => {
   const [area, setArea] = useState(new Array<Pref>());
@@ -36,14 +37,12 @@ const CityViewer: React.FC = () => {
     <>
       <p>City information</p>
       <div>
-        <Row className="h-50">
+        <Row>
           <Col>
-            <div>
-              <PrefList area={area} setPrefName={setPref} />
-            </div>
+            <PrefList area={area} setPrefName={setPref} />
           </Col>
           <Col>
-            <p>City Info here</p>
+            <p>City List here</p>
             <p>{selectedPref}</p>
           </Col>
         </Row>

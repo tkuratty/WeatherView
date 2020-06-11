@@ -43,12 +43,16 @@ const PrefList: React.FC<{
           checked={!listSelected}
         />
       </Form>
-      <div>
+      <div className="city-list-info-common">
         {listSelected && (
-          <ListPrefView setPrefName={props.setPrefName} area={props.area} />
+          <div className="overflow-auto" style={{ height: "inherit" }}>
+            <ListPrefView setPrefName={props.setPrefName} area={props.area} />
+          </div>
         )}
         {!listSelected && (
-          <DropPrefView setPrefName={props.setPrefName} area={props.area} />
+          <div className="overflow-auto" style={{ height: "inherit" }}>
+            <DropPrefView setPrefName={props.setPrefName} area={props.area} />
+          </div>
         )}
       </div>
     </div>
