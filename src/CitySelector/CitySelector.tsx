@@ -13,7 +13,7 @@ const CitySelector: React.FC<{
   const itemClicked = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    console.log(event.target);
+    //console.log(event.target);
     if (event.target instanceof HTMLButtonElement) {
       const b: HTMLButtonElement = event.target;
       if (!b) return;
@@ -28,7 +28,7 @@ const CitySelector: React.FC<{
       <Accordion>
         {props.area.map((pref: Pref) => {
           return (
-            <Card>
+            <Card key={pref.name}>
               <Card.Header>
                 <Accordion.Toggle
                   as={Button}
