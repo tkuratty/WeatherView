@@ -15,6 +15,8 @@ export type Pref = {
   cities: Array<City>;
 };
 
+export const emptyCity: City = { id: "", name: "", source: "" };
+
 /**
  * Convert xml area data to object
  * @param prefData
