@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ListGroup, Modal, Button } from "react-bootstrap";
-import { City } from "./Area";
+import { City } from "../Utils/Area";
 
 const ListCityView: React.FC<{
   cities: Array<City>;

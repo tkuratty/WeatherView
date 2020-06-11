@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
-import { Pref } from "./Area";
+import { Pref } from "../Utils/Area";
 
 const ListPrefView: React.FC<{
   area: Array<Pref>;

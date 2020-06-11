@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import xml2js from "xml2js";
 import { Button, Container } from "react-bootstrap";
-import { GetAreaData, Pref } from "./CityViewer/Area";
+import { GetAreaData, Pref } from "./Utils/Area";
 import CityViewer from "./CityViewer/CityViewer";
 import Home from "./Home";
 
@@ -43,7 +43,7 @@ function App() {
           </div>
           <hr />
           <Switch>
-            <Route exact path="/" children={<Home />} />
+            <Route exact path="/" children={<Home area={area} />} />
             <Route
               exact
               path="/cityview"

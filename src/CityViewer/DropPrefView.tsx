@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
-import { Pref } from "./Area";
+import { Pref } from "../Utils/Area";
 
 const DropPrefView: React.FC<{
   area: Array<Pref>;
