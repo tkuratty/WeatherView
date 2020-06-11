@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import xml2js from "xml2js";
 import { Button, Container } from "react-bootstrap";
-//import "./App.css";
+import { GetAreaData, Pref } from "./CityViewer/Area";
 import CityViewer from "./CityViewer/CityViewer";
 import Home from "./Home";
 
 function App() {
+  const [area, setArea] = useState(new Array<Pref>());
+  const xmlUrl = "/forecast/rss/primary_area.xml";
+
+  useEffect(() => {
+    // didMount
+    fetch(xmlUrl)
+      .then((res) => res.text())
+      .then((xml) => {
+        const parser = new xml2js.Parser();
+        parser.parseString(xml, (err: Error, result: any) => {
+          if (err === null) {
+            //console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
+            setArea(
+              GetAreaData(result.rss.channel[0]["ldWeather:source"][0].pref)
+            );
+          } else {
+            console.log(err);
+          }
+        });
+      });
+  }, []);
+
   return (
     <Container fluid>
       <div className="App">
@@ -21,7 +44,11 @@ function App() {
           <hr />
           <Switch>
             <Route exact path="/" children={<Home />} />
-            <Route exact path="/cityview" children={<CityViewer />} />
+            <Route
+              exact
+              path="/cityview"
+              children={<CityViewer area={area} />}
+            />
             <Route render={() => <h2>Not Found</h2>} />
           </Switch>
         </BrowserRouter>

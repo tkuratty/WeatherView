@@ -1,36 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { GetAreaData, Pref, City } from "./Area";
-import xml2js from "xml2js";
+import { Pref, City } from "./Area";
 import PrefList from "./PrefList";
-import ListSityView from "./ListCityView";
 import { Row, Col } from "react-bootstrap";
 import "./CityViewer.css";
 import ListCityView from "./ListCityView";
 
-const CityViewer: React.FC = () => {
-  const [area, setArea] = useState(new Array<Pref>());
+const CityViewer: React.FC<{ area: Array<Pref> }> = (props) => {
   const [selectedPref, setSelectedPref] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-  const xmlUrl = "/forecast/rss/primary_area.xml";
-
-  useEffect(() => {
-    // didMount
-    fetch(xmlUrl)
-      .then((res) => res.text())
-      .then((xml) => {
-        const parser = new xml2js.Parser();
-        parser.parseString(xml, (err: Error, result: any) => {
-          if (err === null) {
-            //console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
-            setArea(
-              GetAreaData(result.rss.channel[0]["ldWeather:source"][0].pref)
-            );
-          } else {
-            console.log(err);
-          }
-        });
-      });
-  }, []);
 
   const setPref = (prefName: string) => {
     setSelectedPref(prefName);
@@ -38,9 +15,8 @@ const CityViewer: React.FC = () => {
   const setCity = (cityName: string) => {
     setSelectedCity(cityName);
   };
-
   const getCities = (): Array<City> => {
-    const pref = area.find((value) => value.name === selectedPref);
+    const pref = props.area.find((value) => value.name === selectedPref);
     return pref === undefined ? new Array<City>() : pref.cities;
   };
 
@@ -56,7 +32,7 @@ const CityViewer: React.FC = () => {
       <div>
         <Row>
           <Col>
-            <PrefList area={area} setPrefName={setPref} />
+            <PrefList area={props.area} setPrefName={setPref} />
           </Col>
           <Col>
             <p>City List here</p>
