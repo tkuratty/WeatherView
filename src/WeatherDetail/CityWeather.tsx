@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ListGroup, Accordion, Card, Button } from "react-bootstrap";
 import { Pref, City } from "../Utils/Area";
-import GetWeather from "../Utils/Weather";
+import GetWeather, { CityWeatherInfo, EmptyWeather } from "../Utils/Weather";
 
 const CityWeather: React.FC<{
   selectedCity: City;
 }> = (props) => {
-  const [weatherJson, setWeatherJson] = useState("");
+  // TODO:マウントされた最初の一回だけ取りに行く?
+  // 無限に繰り返し呼ばれてしまう
+  const cityWeather = useMemo(() => {
+    if (props.selectedCity.id !== "") {
+      return GetWeather(props.selectedCity.id);
+    } else {
+      return EmptyWeather;
+    }
+  }, [props.selectedCity.id]);
 
-  if (props.selectedCity.id !== "") {
-    GetWeather(props.selectedCity.id).then((jsonData) => {
-      //console.log(JSON.stringify(jsonData));
-      setWeatherJson(jsonData);
-    });
-  }
   return (
     <>
       Weather Information
@@ -22,6 +24,11 @@ const CityWeather: React.FC<{
           <li>{props.selectedCity.id}</li>
           <li>{props.selectedCity.name}</li>
           <li>{props.selectedCity.source}</li>
+          <div>
+            {cityWeather.location.area}
+            <br />
+            <p>{cityWeather.description.text}</p>
+          </div>
         </div>
       )}
     </>
