@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Pref, City, emptyCity } from "./Utils/Area";
 import { Row, Col } from "react-bootstrap";
 import CitySelector from "./CitySelector/CitySelector";
+import CityWeather from "./WeatherDetail/CityWeather";
 
 const Home: React.FC<{ area: Array<Pref> }> = (props) => {
   const [selectedCity, setSelectedCity] = useState(emptyCity);
@@ -15,6 +16,10 @@ const Home: React.FC<{ area: Array<Pref> }> = (props) => {
     });
   }, [props.area]);
 
+  /**
+   * Set selected city object to state (will pass to child component)
+   * @param cityId
+   */
   const setCity = (cityId: string) => {
     // const allCities = props.area.flatMap((value) => {
     //   return value.cities;
@@ -29,14 +34,7 @@ const Home: React.FC<{ area: Array<Pref> }> = (props) => {
         <CitySelector area={props.area} setCity={setCity} />
       </Col>
       <Col>
-        Weather Information
-        {selectedCity.name !== "" && (
-          <div>
-            <li>{selectedCity.id}</li>
-            <li>{selectedCity.name}</li>
-            <li>{selectedCity.source}</li>
-          </div>
-        )}
+        <CityWeather selectedCity={selectedCity} />
       </Col>
     </Row>
   );
