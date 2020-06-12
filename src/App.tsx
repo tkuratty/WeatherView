@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import xml2js from "xml2js";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { GetAreaData, Pref } from "./Utils/Area";
 import CityViewer from "./CityViewer/CityViewer";
 import Home from "./Home";
@@ -29,32 +29,43 @@ function App() {
       });
   }, []);
 
-  return (
-    <Container fluid>
-      <div className="App">
-        <BrowserRouter>
-          <div>
-            <Link to="/">
-              <Button variant="primary">Home</Button>
-            </Link>
-            <Link to="/cityview">
-              <Button variant="primary">City Viewer</Button>
-            </Link>
-          </div>
-          <hr />
-          <Switch>
-            <Route exact path="/" children={<Home area={area} />} />
-            <Route
-              exact
-              path="/cityview"
-              children={<CityViewer area={area} />}
-            />
-            <Route render={() => <h2>Not Found</h2>} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    </Container>
-  );
+  if (area.length == 0) {
+    // maybe it does not work...
+    return (
+      <Container fluid>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </Container>
+    );
+  } else {
+    return (
+      <Container fluid>
+        <div className="App">
+          <BrowserRouter>
+            <div>
+              <Link to="/">
+                <Button variant="primary">Home</Button>
+              </Link>
+              <Link to="/cityview">
+                <Button variant="primary">City Viewer</Button>
+              </Link>
+            </div>
+            <hr />
+            <Switch>
+              <Route exact path="/" children={<Home area={area} />} />
+              <Route
+                exact
+                path="/cityview"
+                children={<CityViewer area={area} />}
+              />
+              <Route render={() => <h2>Not Found</h2>} />
+            </Switch>
+          </BrowserRouter>
+        </div>
+      </Container>
+    );
+  }
 }
 
 export default App;
