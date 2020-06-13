@@ -8,6 +8,9 @@ const CityWeather: React.FC<{
 }> = (props) => {
   const [cityWeather, setCityWeather] = useState(EmptyWeather);
 
+  /**
+   * Execute when selectedCity is changed
+   */
   useEffect(() => {
     if (props.selectedCity.id !== "") {
       GetWeather(props.selectedCity.id).then((weather) => {
