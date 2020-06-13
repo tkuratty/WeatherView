@@ -23,7 +23,7 @@ export const emptyCity: City = { id: "", name: "", source: "" };
  */
 export function GetAreaData(prefData: Array<Object>): Array<Pref> {
   const area = new Array<Pref>();
-  prefData.map((pref: any, index: number) => {
+  prefData.map((pref: any) => {
     const prefName: string = pref["$"].title;
     const cities = pref["city"].map(
       (city: any): City => {

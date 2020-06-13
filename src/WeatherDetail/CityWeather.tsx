@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { ListGroup, Accordion, Card, Button } from "react-bootstrap";
-import { Pref, City } from "../Utils/Area";
-import GetWeather, { CityWeatherInfo, EmptyWeather } from "../Utils/Weather";
+import React, { useState, useEffect } from "react";
+//import { ListGroup, Accordion, Card, Button } from "react-bootstrap";
+import { City } from "../Utils/Area";
+import GetWeather, { EmptyWeather } from "../Utils/Weather";
 
 const CityWeather: React.FC<{
   selectedCity: City;
 }> = (props) => {
   const [cityWeather, setCityWeather] = useState(EmptyWeather);
-  // マウントされた最初の一回だけ取りに行く
+
   useEffect(() => {
     if (props.selectedCity.id !== "") {
       GetWeather(props.selectedCity.id).then((weather) => {

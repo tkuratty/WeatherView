@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ListGroup, Accordion, Card, Button } from "react-bootstrap";
 import { Pref, City } from "../Utils/Area";
 

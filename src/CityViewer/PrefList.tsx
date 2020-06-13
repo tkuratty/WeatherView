@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Pref, City } from "../Utils/Area";
+import React, { useState } from "react";
+import { Pref } from "../Utils/Area";
 import { Form } from "react-bootstrap";
 import ListPrefView from "./ListPrefView";
 import DropPrefView from "./DropPrefView";

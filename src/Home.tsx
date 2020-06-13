@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Pref, City, emptyCity } from "./Utils/Area";
+import { Pref, emptyCity } from "./Utils/Area";
 import { Row, Col } from "react-bootstrap";
 import CitySelector from "./CitySelector/CitySelector";
 import CityWeather from "./WeatherDetail/CityWeather";

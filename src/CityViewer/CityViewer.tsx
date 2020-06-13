@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Pref, City } from "../Utils/Area";
 import PrefList from "./PrefList";
 import { Row, Col } from "react-bootstrap";
