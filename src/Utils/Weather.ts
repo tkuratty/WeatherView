@@ -41,9 +41,8 @@ type Location = {
 };
 
 export default async function GetWeather(
-  cityId: string,
-  setWeather = (weather:CityWeatherInfo) => void
-) :Promise<CityWeatherInfo> {
+  cityId: string
+): Promise<CityWeatherInfo> {
   const url = `/forecast/webservice/json/v1?city=${cityId}`;
 
   try {
@@ -51,7 +50,7 @@ export default async function GetWeather(
     const data = await res.json();
     if (data === undefined) return EmptyWeather;
     return data;
-//    return data;
+    //    return data;
   } catch (e) {
     console.log(e);
     return EmptyWeather;

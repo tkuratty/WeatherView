@@ -6,13 +6,13 @@ import GetWeather, { CityWeatherInfo, EmptyWeather } from "../Utils/Weather";
 const CityWeather: React.FC<{
   selectedCity: City;
 }> = (props) => {
-  // TODO:マウントされた最初の一回だけ取りに行く?
-  // 無限に繰り返し呼ばれてしまう
-  const cityWeather = useMemo(() => {
+  const [cityWeather, setCityWeather] = useState(EmptyWeather);
+  // マウントされた最初の一回だけ取りに行く
+  useEffect(() => {
     if (props.selectedCity.id !== "") {
-      return GetWeather(props.selectedCity.id);
-    } else {
-      return EmptyWeather;
+      GetWeather(props.selectedCity.id).then((weather) => {
+        setCityWeather(weather);
+      });
     }
   }, [props.selectedCity.id]);
 
