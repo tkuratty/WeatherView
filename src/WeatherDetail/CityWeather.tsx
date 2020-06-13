@@ -27,6 +27,7 @@ const CityWeather: React.FC<{
           <div>
             {cityWeather.location.area}
             <br />
+            <p>{cityWeather.location.city}</p>
             <p>{cityWeather.description.text}</p>
           </div>
         </div>
