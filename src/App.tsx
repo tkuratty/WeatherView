@@ -32,9 +32,13 @@ function App() {
   if (area.length === 0) {
     return (
       <Container fluid>
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <div className="d-flex align-items-center align-items-center justify-content-center p-5">
+          <span>
+            <Spinner animation="grow" variant="primary" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </span>
+        </div>
       </Container>
     );
   } else {

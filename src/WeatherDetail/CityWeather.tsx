@@ -23,8 +23,8 @@ const CityWeather: React.FC<{
 
   if ((cityWeather.title = "")) {
     return (
-      <div>
-        <Spinner animation="border" role="status">
+      <div className="d-flex align-items-center">
+        <Spinner animation="grow" variant="primary" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
       </div>
