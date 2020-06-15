@@ -30,7 +30,6 @@ function App() {
   }, []);
 
   if (area.length === 0) {
-    // maybe it does not work...
     return (
       <Container fluid>
         <Spinner animation="border" role="status">

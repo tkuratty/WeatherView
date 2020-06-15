@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Spinner, Card, Button, Accordion } from "react-bootstrap";
 import { City } from "../Utils/Area";
 import Forecast from "./Forecast";
+import PinpointWeather from "./PinpointWeather";
 import GetWeather, { EmptyWeather } from "../Utils/Weather";
 
 const CityWeather: React.FC<{
@@ -55,6 +56,9 @@ const CityWeather: React.FC<{
               </Accordion.Collapse>
             </Card>
           </Accordion>
+          <div className="my-3">
+            <PinpointWeather cityWeather={cityWeather} />
+          </div>
           <div className="my-3">
             <h2>都市データ</h2>
             <li>{props.selectedCity.id}</li>
