@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { City } from "../Utils/Area";
+import Forecast from "./Forecast";
 import GetWeather, { EmptyWeather } from "../Utils/Weather";
 
 const CityWeather: React.FC<{
@@ -33,14 +34,23 @@ const CityWeather: React.FC<{
       Weather Information
       {props.selectedCity.name !== "" && (
         <div>
-          <li>{props.selectedCity.id}</li>
-          <li>{props.selectedCity.name}</li>
-          <li>{props.selectedCity.source}</li>
           <div>
-            {cityWeather.location.area}
+            県・地域: {cityWeather.location.area}
             <br />
-            <p>{cityWeather.location.city}</p>
+            都市名: {cityWeather.location.city}
+          </div>
+          <div>
+            <Forecast cityWeather={cityWeather} />
+          </div>
+          <div>
+            <h2>解説</h2>
             <p>{cityWeather.description.text}</p>
+          </div>
+          <div>
+            <h2>都市データ</h2>
+            <li>{props.selectedCity.id}</li>
+            <li>{props.selectedCity.name}</li>
+            <li>{props.selectedCity.source}</li>
           </div>
         </div>
       )}
