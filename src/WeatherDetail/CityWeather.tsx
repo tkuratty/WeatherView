@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner, Card, Button, Accordion } from "react-bootstrap";
+import { Spinner, Card, Accordion } from "react-bootstrap";
 import { City } from "../Utils/Area";
 import Forecast from "./Forecast";
 import PinpointWeather from "./PinpointWeather";

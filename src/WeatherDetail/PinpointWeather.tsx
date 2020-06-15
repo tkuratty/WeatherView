@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Card, Row, Col, CardColumns } from "react-bootstrap";
-import { City } from "../Utils/Area";
-import GetWeather, { EmptyWeather, CityWeatherInfo } from "../Utils/Weather";
+import React from "react";
+import { Card, CardColumns } from "react-bootstrap";
+import { CityWeatherInfo } from "../Utils/Weather";
 
 const PinpointWeather: React.FC<{
   cityWeather: CityWeatherInfo;
