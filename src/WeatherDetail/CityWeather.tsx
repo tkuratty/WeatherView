@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import { ListGroup, Accordion, Card, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { City } from "../Utils/Area";
 import GetWeather, { EmptyWeather } from "../Utils/Weather";
 
@@ -19,6 +19,15 @@ const CityWeather: React.FC<{
     }
   }, [props.selectedCity.id]);
 
+  if ((cityWeather.title = "")) {
+    return (
+      <div>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
   return (
     <>
       Weather Information

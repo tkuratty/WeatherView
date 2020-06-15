@@ -40,6 +40,10 @@ type Location = {
   prefecture: string;
 };
 
+/**
+ * Get weather data by city ID
+ * @param cityId
+ */
 export default async function GetWeather(
   cityId: string
 ): Promise<CityWeatherInfo> {
