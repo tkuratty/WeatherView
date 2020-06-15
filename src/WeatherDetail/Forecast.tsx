@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner, Row, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import { City } from "../Utils/Area";
 import GetWeather, { EmptyWeather, CityWeatherInfo } from "../Utils/Weather";
 
@@ -14,9 +14,13 @@ const Forecast: React.FC<{
           <Row>
             {props.cityWeather.forecasts.map((item) => {
               return (
-                <Col>
-                  <li>{item.dateLabel}</li>
-                  {item.telop}
+                <Col key={item.dateLabel}>
+                  <Card>
+                    <Card.Header>{item.dateLabel}</Card.Header>
+                    <Card.Body>
+                      <Card.Text>{item.telop}</Card.Text>
+                    </Card.Body>
+                  </Card>
                 </Col>
               );
             })}

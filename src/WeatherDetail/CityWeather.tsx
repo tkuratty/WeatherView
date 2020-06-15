@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Card, Button, Accordion } from "react-bootstrap";
 import { City } from "../Utils/Area";
 import Forecast from "./Forecast";
 import GetWeather, { EmptyWeather } from "../Utils/Weather";
@@ -33,20 +33,29 @@ const CityWeather: React.FC<{
     <>
       Weather Information
       {props.selectedCity.name !== "" && (
-        <div>
-          <div>
-            県・地域: {cityWeather.location.area}
+        <div className="m-1">
+          <div className="my-3">
+            <h2>地点情報</h2>
+            地域: {cityWeather.location.area}
             <br />
             都市名: {cityWeather.location.city}
           </div>
-          <div>
+          <div className="my-3">
             <Forecast cityWeather={cityWeather} />
           </div>
-          <div>
-            <h2>解説</h2>
-            <p>{cityWeather.description.text}</p>
-          </div>
-          <div>
+          <Accordion>
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Card.Header} eventKey="0">
+                  天気概況
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>{cityWeather.description.text}</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+          <div className="my-3">
             <h2>都市データ</h2>
             <li>{props.selectedCity.id}</li>
             <li>{props.selectedCity.name}</li>
