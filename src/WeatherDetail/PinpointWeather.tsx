@@ -15,7 +15,11 @@ const PinpointWeather: React.FC<{
               <Card key={item.name}>
                 <Card.Header>{item.name}</Card.Header>
                 <Card.Body>
-                  <Card.Text>{item.link}</Card.Text>
+                  <Card.Text>
+                    <a href={item.link} target="_blank">
+                      {item.link}
+                    </a>
+                  </Card.Text>
                 </Card.Body>
               </Card>
             );

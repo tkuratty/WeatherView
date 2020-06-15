@@ -1,3 +1,6 @@
+/**
+ * Weather information for each city
+ */
 export interface CityWeatherInfo {
   link: string;
   publicTime: Date;
@@ -7,6 +10,9 @@ export interface CityWeatherInfo {
   location: Location;
   description: { text: string; publicTime: Date };
 }
+/**
+ * Empty weather information
+ */
 export const EmptyWeather: CityWeatherInfo = {
   link: "",
   publicTime: new Date(),
@@ -53,7 +59,13 @@ export default async function GetWeather(
     const res = await fetch(url);
     const data = await res.json();
     if (data === undefined) return EmptyWeather;
-    return data;
+    const weather: CityWeatherInfo = data;
+    // remove string of port ":3000" from weather link
+    weather.pinpointLocations = weather.pinpointLocations.map((item) => {
+      item.link = item.link.replace(":3000", "");
+      return item;
+    });
+    return weather;
     //    return data;
   } catch (e) {
     console.log(e);
