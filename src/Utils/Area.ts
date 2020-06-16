@@ -19,6 +19,9 @@ export type Pref = {
 
 export const emptyCity: City = { id: "", name: "", source: "" };
 
+/**
+ * Get Area data
+ */
 export default async function GetArea(): Promise<Array<Pref>> {
   const xmlUrl = "/forecast/rss/primary_area.xml";
   try {

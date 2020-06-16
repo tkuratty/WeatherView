@@ -4,6 +4,10 @@ import { Form } from "react-bootstrap";
 import ListPrefView from "./ListPrefView";
 import DropPrefView from "./DropPrefView";
 
+/**
+ * Prefecture list
+ * @param props
+ */
 const PrefList: React.FC<{
   area: Array<Pref>;
   setPrefName: (prefName: string) => void;

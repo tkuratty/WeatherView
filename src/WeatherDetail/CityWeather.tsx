@@ -5,6 +5,10 @@ import Forecast from "./Forecast";
 import PinpointWeather from "./PinpointWeather";
 import GetWeather, { EmptyWeather } from "../Utils/Weather";
 
+/**
+ * Show a weather information by selected city information
+ * @param props
+ */
 const CityWeather: React.FC<{
   selectedCity: City;
 }> = (props) => {

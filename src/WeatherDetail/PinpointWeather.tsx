@@ -2,6 +2,10 @@ import React from "react";
 import { Card, CardColumns } from "react-bootstrap";
 import { CityWeatherInfo } from "../Utils/Weather";
 
+/**
+ * Show link for pin-point weather information by cards
+ * @param props
+ */
 const PinpointWeather: React.FC<{
   cityWeather: CityWeatherInfo;
 }> = (props) => {

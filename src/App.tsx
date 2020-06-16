@@ -5,6 +5,9 @@ import GetArea, { Pref } from "./Utils/Area";
 import CityViewer from "./CityViewer/CityViewer";
 import Home from "./Home";
 
+/**
+ * Main component of the applicaiton
+ */
 function App() {
   const [area, setArea] = useState(new Array<Pref>());
 

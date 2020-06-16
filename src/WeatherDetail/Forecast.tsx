@@ -2,6 +2,10 @@ import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { CityWeatherInfo } from "../Utils/Weather";
 
+/**
+ * Show weather forcast for a selected city
+ * @param props
+ */
 const Forecast: React.FC<{
   cityWeather: CityWeatherInfo;
 }> = (props) => {
