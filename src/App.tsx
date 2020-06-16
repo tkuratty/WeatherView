@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import xml2js from "xml2js";
 import { Button, Container, Spinner } from "react-bootstrap";
-import { GetAreaData, Pref } from "./Utils/Area";
+import GetArea, { Pref } from "./Utils/Area";
 import CityViewer from "./CityViewer/CityViewer";
 import Home from "./Home";
 
 function App() {
   const [area, setArea] = useState(new Array<Pref>());
-  const xmlUrl = "/forecast/rss/primary_area.xml";
 
   useEffect(() => {
     // didMount
-    fetch(xmlUrl)
-      .then((res) => res.text())
-      .then((xml) => {
-        const parser = new xml2js.Parser();
-        parser.parseString(xml, (err: Error, result: any) => {
-          if (err === null) {
-            //console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
-            setArea(
-              GetAreaData(result.rss.channel[0]["ldWeather:source"][0].pref)
-            );
-          } else {
-            console.log(err);
-          }
-        });
+    try {
+      GetArea().then((areaData) => {
+        setArea(areaData);
       });
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   if (area.length === 0) {

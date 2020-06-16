@@ -16,7 +16,11 @@ const PinpointWeather: React.FC<{
                 <Card.Header>{item.name}</Card.Header>
                 <Card.Body>
                   <Card.Text>
-                    <a href={item.link} target="_blank">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {item.link}
                     </a>
                   </Card.Text>

@@ -1,3 +1,5 @@
+import xml2js from "xml2js";
+
 /**
  * City data
  */
@@ -17,13 +19,38 @@ export type Pref = {
 
 export const emptyCity: City = { id: "", name: "", source: "" };
 
+export default async function GetArea(): Promise<Array<Pref>> {
+  const xmlUrl = "/forecast/rss/primary_area.xml";
+  try {
+    const res = await fetch(xmlUrl);
+    const xml = await res.text();
+    const parser = new xml2js.Parser();
+    return new Promise(function (resolve, reject) {
+      parser.parseString(xml, (err: Error, result: any) => {
+        if (err === null) {
+          //console.log(result.rss.channel[0]["ldWeather:source"][0].pref);
+          resolve(
+            PrepareAreaData(result.rss.channel[0]["ldWeather:source"][0].pref)
+          );
+        } else {
+          console.log(err);
+          reject(new Array<Pref>());
+        }
+      });
+    });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
+
 /**
  * Convert xml area data to object
  * @param prefData
  */
-export function GetAreaData(prefData: Array<Object>): Array<Pref> {
+function PrepareAreaData(prefData: Array<Object>): Array<Pref> {
   const area = new Array<Pref>();
-  prefData.map((pref: any) => {
+  prefData.forEach((pref: any) => {
     const prefName: string = pref["$"].title;
     const cities = pref["city"].map(
       (city: any): City => {

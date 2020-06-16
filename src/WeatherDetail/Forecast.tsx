@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
-import { City } from "../Utils/Area";
-import GetWeather, { EmptyWeather, CityWeatherInfo } from "../Utils/Weather";
+import { CityWeatherInfo } from "../Utils/Weather";
 
 const Forecast: React.FC<{
   cityWeather: CityWeatherInfo;
