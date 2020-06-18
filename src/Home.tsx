@@ -30,7 +30,7 @@ const Home: React.FC<{ area: Array<Pref> }> = (props) => {
 
   return (
     <Row>
-      <Col sm={4} className="overflow-auto" style={{ height: "480px" }}>
+      <Col sm={4} className="overflow-auto" style={{ height: "630px" }}>
         <CitySelector area={props.area} setCity={setCity} />
       </Col>
       <Col>
